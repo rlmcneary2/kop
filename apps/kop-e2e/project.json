@@ -1,0 +1,28 @@
+{
+  "root": "apps/kop-e2e",
+  "sourceRoot": "apps/kop-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/kop-e2e/cypress.json",
+        "devServerTarget": "kop:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "kop:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kop-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["kop"]
+}

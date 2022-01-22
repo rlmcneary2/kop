@@ -1,0 +1,70 @@
+{
+  "root": "apps/kop",
+  "sourceRoot": "apps/kop/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/kop",
+        "index": "apps/kop/src/index.html",
+        "baseHref": "/",
+        "main": "apps/kop/src/main.tsx",
+        "polyfills": "apps/kop/src/polyfills.ts",
+        "tsConfig": "apps/kop/tsconfig.app.json",
+        "assets": ["apps/kop/src/favicon.ico", "apps/kop/src/assets"],
+        "styles": ["apps/kop/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/kop/src/environments/environment.ts",
+              "with": "apps/kop/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "kop:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "kop:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kop/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/kop"],
+      "options": {
+        "jestConfig": "apps/kop/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
