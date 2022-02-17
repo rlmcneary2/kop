@@ -1,12 +1,17 @@
-import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import { BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ContextProvider } from "./context/provider";
+import { AppRoutes } from "./app-routes";
 
 export function App() {
   return (
-    <>
-      <NxWelcome title="kop" />
-      <div />
-    </>
+    <ChakraProvider resetCSS>
+      <BrowserRouter>
+        <ContextProvider>
+          <AppRoutes />
+        </ContextProvider>
+      </BrowserRouter>
+    </ChakraProvider>
   );
 }
 

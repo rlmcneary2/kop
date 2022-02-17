@@ -2,6 +2,6 @@
   "version": 2,
   "projects": {
     "kop": "apps/kop",
-    "kop-e2e": "apps/kop-e2e"
+    "ui": "libs/ui"
   }
 }
